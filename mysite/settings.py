@@ -88,18 +88,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
-STATIC_URL = "/static/"
+STATIC_URL = "/"
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-
-
-MEDIA_ROOT = os.path.join(BASE_DIR, '../mysite/mysite/static')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 BOWER_COMPONENTS_ROOT = os.path.join(PROJECT_ROOT, 'components')
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, '../mysite/mysite/static'),
-	os.path.join(BASE_DIR, '../mysite/components/bower_components/'),
+    #os.path.join(BASE_DIR, 'mysite/static'),
+	os.path.join(BASE_DIR, 'mysite/static'),
 
 	)
 
@@ -114,9 +112,8 @@ staticfiles_finders = (
 
 TEMPLATE_DIRS = (
     #os.path.join(BASE_DIR, '../mysite/mysite/template'),
-	os.path.join(BASE_DIR, '../mysite/template'),
+	os.path.join(BASE_DIR, 'mysite/template'),
 )
-
 #BOWER_PATH = '/usr/local/bin/bower'
 
 BOWER_INSTALLED_APPS = (
