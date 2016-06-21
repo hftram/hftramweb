@@ -8,7 +8,7 @@ from article.models import Article
 from article.forms import ArticleForm
 
 from django.http import HttpResponseRedirect, HttpResponse
-from django.core.context_processors import csrf
+from django.template.context_processors import csrf
 from django.utils.encoding import smart_str
 from django.core.files import File
 from django.views.decorators.csrf import csrf_exempt
@@ -187,7 +187,7 @@ def get_latest_tram_data(request):
 	
 	
     
-    form['name'] = "\n      SDP14: Team REST"
+    form['name'] = "\n      Remote Environmental Sensing Tram"
     form['position'] = json_data['position']
     form['position_percentage'] = json_data['pos_percentage']
     form['battery_info'] = json_data['battery_info']
@@ -235,7 +235,7 @@ def tram_info(request):
 	
 	
 	
-    form['name'] = "\n      SDP14: Team REST"
+    form['name'] = "\n     Remote Environmental Sensing Tram"
     form['position'] = json_data['position']
     form['position_percentage'] = json_data['pos_percentage']
     form['battery_info'] = json_data['battery_info']

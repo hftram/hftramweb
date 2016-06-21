@@ -1,3 +1,0 @@
-wait 5
-wait 5
-measure 1 0 0 0 0

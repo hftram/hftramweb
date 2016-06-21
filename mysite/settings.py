@@ -93,12 +93,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-BOWER_COMPONENTS_ROOT = os.path.join(PROJECT_ROOT, 'components')
+BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'mysite/components')
 
 STATICFILES_DIRS = (
-    #os.path.join(BASE_DIR, 'mysite/static'),
 	os.path.join(BASE_DIR, 'mysite/static'),
-
 	)
 
 staticfiles_finders = (
@@ -108,13 +106,35 @@ staticfiles_finders = (
 )
 
 
-#Directories for templates
 
-TEMPLATE_DIRS = (
-    #os.path.join(BASE_DIR, '../mysite/mysite/template'),
-	os.path.join(BASE_DIR, 'mysite/template'),
-)
-#BOWER_PATH = '/usr/local/bin/bower'
+
+#Directories for templates
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            # insert your TEMPLATE_DIRS here
+            os.path.join(BASE_DIR, 'mysite/template'),
+        ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                # Insert your TEMPLATE_CONTEXT_PROCESSORS here or use this
+                # list if you haven't customized them:
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
+
+BOWER_PATH = '/usr/local/bin/bower'
 
 BOWER_INSTALLED_APPS = (
     'd3#3.3.6',

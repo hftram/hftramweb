@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from forms import ArticleForm
 from forms import File_UploadForm, Tram_File_UploadForm
 from django.http import HttpResponseRedirect
-from django.core.context_processors import csrf
+from django.template.context_processors import csrf
 from django.utils.encoding import smart_str
 from django.core.files import File
 from django.views.decorators.csrf import csrf_exempt

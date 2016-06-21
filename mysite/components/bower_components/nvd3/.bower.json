@@ -8,7 +8,7 @@
     "tag": "v1.1.12-beta",
     "commit": "55ace8b85c88b20123113288da9381310794136e"
   },
-  "_source": "git://github.com/novus/nvd3.git",
+  "_source": "https://github.com/novus/nvd3.git",
   "_target": "1.1.12-beta",
   "_originalSource": "nvd3",
   "_direct": true

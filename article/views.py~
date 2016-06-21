@@ -87,6 +87,7 @@ def commands(request):
     args.update(csrf(request))
     args['form'] = form
     
+    last_command =""
     command = str(Article.objects.last()) 
     
     if(command == "measure 1 0 0 0 0"):
@@ -106,7 +107,7 @@ def commands(request):
   		
   
   
-    args['last_command'] = str(last_command)
+    args['last_command'] = str(command)
     received_command = str(Article.objects.last()).lower()	    
 
     if("move" in received_command or "pciture" in received_command or "measure" in received_command or "wait" in received_command or "update_autonomous" in received_command or "disable_autonomous" in received_command or "enable_autonomous" in received_command):	

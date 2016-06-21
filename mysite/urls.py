@@ -1,22 +1,22 @@
 from django.conf.urls import patterns, include, url
 from mysite.views import hello, post_logout
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-
+from django.contrib.auth import views as django_views
+from django.conf.urls.static import static
+from django.conf import settings
 
 from django.contrib import admin
 admin.autodiscover()
 
-urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'mysite.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
-
+urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', hello),
-	url(r'^post_logout/$', post_logout),
-    (r'^articles/', include('article.urls')),
-	(r'^data/', include('data.urls')),
-	(r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'login.html'}),
-	(r'^accounts/logout/$', 'django.contrib.auth.views.logout',{'next_page': '/post_logout/'}),
-)
+    url(r'^post_logout/$', post_logout),
+    url(r'^articles/', include('article.urls')),
+    url(r'^data/', include('data.urls')),
+    url(r'^accounts/login/$', django_views.login, {'template_name': 'login.html'}),
+    url(r'^accounts/logout/$', django_views.logout,{'next_page': '/post_logout/'}),
 
+]# + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+urlpatterns += staticfiles_urlpatterns()#Serving Static Files
