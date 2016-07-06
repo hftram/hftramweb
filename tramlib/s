@@ -1,0 +1,5 @@
+from WebSite import WebSite, get_address
+from ParseData import ParseData, number_of_data
+#get_address()
+#number_of_data()
+WebSite().upload_website(ParseData().parse_data(), '/data/json_upload/', 1)

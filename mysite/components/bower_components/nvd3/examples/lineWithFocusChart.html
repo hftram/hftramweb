@@ -1,4 +1,24 @@
+{% load static %}
+{% load staticfiles %}
 <!DOCTYPE html>
+<html>
+<head>
+  <script type="text/javascript" src="{% static "js/bootstrap.js" %}" ></script>
+  <script type="text/javascript" src="../lib/d3.v3.js"></script>
+  <script type="text/javascript" src="../nv.d3.js"></script>
+  <script type="text/javascript" src="{% staticfiles "components/bower_components/nvd3/src/tooltip.js" %}"></script>
+  <script type="text/javascript" src="{% staticfiles "components/bower_components/nvd3/src/utils.js" %}"></script>
+  <script type="text/javascript" src="{% staticfiles "components/bower_components/nvd3/src/models/legend.js" %}"></script>
+  <script type="text/javascript" src="{% staticfiles "components/bower_components/nvd3/src/models/axis.js" %}"></script>
+  <script type="text/javascript" src="{% staticfiles "components/bower_components/nvd3/src/models/scatter.js" %}"></script>
+  <script type="text/javascript" src="{% staticfiles "components/bower_components/nvd3/src/models/line.js" %}"></script>
+  <script type="text/javascript" src="{% staticfiles "components/bower_components/nvd3/src/models/lineWithFocusChart.js" %}"></script>
+  <script type="text/javascript" src="stream_layers.js"></script>
+</head>
+
+
+
+
 <meta charset="utf-8">
 
 <link href="../src/nv.d3.css" rel="stylesheet" type="text/css">
@@ -36,16 +56,8 @@ svg {
     <svg style="height: 500px;"></svg>
   </div>
 
-<script src="../lib/d3.v3.js"></script>
-<script src="../nv.d3.js"></script>
-<script src="../src/tooltip.js"></script>
-<script src="../src/utils.js"></script>
-<script src="../src/models/legend.js"></script>
-<script src="../src/models/axis.js"></script>
-<script src="../src/models/scatter.js"></script>
-<script src="../src/models/line.js"></script>
-<script src="../src/models/lineWithFocusChart.js"></script>
-<script src="stream_layers.js"></script>
+
+
 <script>
 
 
@@ -85,3 +97,4 @@ function testData() {
 
 
 </script>
+</html>

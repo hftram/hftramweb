@@ -1,0 +1,124 @@
+{% load nvd3_tags %}
+{% load static %}
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<meta charset="utf-8">
+<link href="..components/bower_components/nvd3/src/nv.d3.css" rel="stylesheet" type="text/css">
+
+<html>
+    <head>
+		{% include_chart_jscss %}
+		{# Jquery CDN : Needed when using jquery_on_ready=True #}
+		<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+		<script type="text/javascript" src="{% static "js/bootstrap.js" %}" ></script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Remote Environmental Sensing Tram</title>
+        <meta name="description" content="HFTram2016">
+        <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.css" %}">
+		<link rel="stylesheet" type="text/css" href="{% static "main.css" %}">
+		<script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script>
+		{% load_chart charttype chartdata chartcontainer extra %}
+			
+		</script>
+	
+	
+	</head>
+    <body>		
+		
+		<div id="menu" class="container">
+			<ul>
+				<li id="begP"><a href="/">Home</a></li>
+				<li id="mid"><a href="/data/tram_info/">Tram Information</a></li>
+				<li id="mid"><a href="/articles/commands/">Command the Tram</a></li>	
+				<li id="endT"><a href="/data/graph/3/">Collected Data</a></li>
+			</ul>
+		</div>
+		
+        <h1>Remote Environmental Sensing Tram</h1>
+		
+		<div id="data_for_table">
+		<nav>
+			<ul>
+				<li><a href="/data/graph/3/">Min. Battery Volt</a></li>
+				<li><a href="/data/graph/4/">PTemp</a></li>
+				<li><a href="/data/graph/6/13/">NDVI Down</a>
+					<ul>
+						<li><a href="/data/graph/6/">NDVIDown_Avg(1)</a></li>
+						<li><a href="/data/graph/7/">NDVIDown_Avg(2)</a></li>
+						<li><a href="/data/graph/8/">NDVIDown_Min(1)</a></li>
+						<li><a href="/data/graph/9/">NDVIDown_Min(2)</a></li>
+						<li><a href="/data/graph/10/">NDVIDown_Max(1)</a></li>
+						<li><a href="/data/graph/11/">NDVIDown_Max(2)</a></li>
+						<li><a href="/data/graph/12/">NDVIDown_Std(1)</a></li>
+						<li><a href="/data/graph/13/">NDVIDown_Std(2)</a></li>
+					</ul>
+				</li>	
+			</ul>
+		</nav>				
+		</div>
+		
+		<div>		
+        <p> Table of data values available <a href="/data/table/">here</a>.</p>
+		<p>Download images and uploaded Excel files of data from <a href="/articles/all_files/">here</a>. </p>
+		<button id="refresh_btn" type="button" class="btn btn-default hidden" onclick="refresh()">New Data is available click here to reload the page.</button>
+		</div>	
+
+
+		<div id="viz2"></div>
+
+		<script type='text/javascript' src="../../../components/bower_components/nvd3/src/lib/d3.v3.js"></script>
+		<script type='text/javascript' src="../../../components/bower_components/nvd3/src/nv.d3.js"></script>
+		<script type='text/javascript' src="../../../components/bower_components/nvd3/src/tooltip.js"></script>
+		<script type='text/javascript' src="../../../components/bower_components/nvd3/src/utils.js"></script>
+		<script type='text/javascript' src="../../../components/bower_components/nvd3/src/models/legend.js"></script>
+		<script type='text/javascript' src="../../../components/bower_components/nvd3/src/models/axis.js"></script>
+		<script type='text/javascript' src="../../../components/bower_components/nvd3/src/models/scatter.js"></script>
+		<script type='text/javascript' src="../../../components/bower_components/nvd3/src/models/line.js"></script>
+		<script type='text/javascript' src="../../../components/bower_components/nvd3/src/models/lineWithFocusChart.js"></script>
+		<script type='text/javascript' src="../../../components/bower_components/nvd3/src/examples/stream_layers.js"></script>
+		<script>
+
+
+		nv.addGraph(function() {
+		  var chart = nv.models.lineWithFocusChart();
+
+		 // chart.transitionDuration(500);
+		  chart.xAxis
+		      .tickFormat(d3.format(',f'));
+		  chart.x2Axis
+		      .tickFormat(d3.format(',f'));
+
+		  chart.yAxis
+		      .tickFormat(d3.format(',.2f'));
+		  chart.y2Axis
+		      .tickFormat(d3.format(',.2f'));
+
+		  d3.select('#chart svg')
+		      .datum(testData())
+		      .call(chart);
+
+		  nv.utils.windowResize(chart.update);
+
+		  return chart;
+		});
+
+
+
+		function testData() {
+		  return stream_layers(3,128,.1).map(function(data, i) {
+		    return { 
+		      key: 'Stream' + i,
+		      values: data
+		    };
+		  });
+		}
+
+
+		</script>
+
+
+
+    </body>
+</html>

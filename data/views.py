@@ -19,6 +19,7 @@ import random
 import datetime
 import time
 import json
+from nvd3 import lineWithFocusChart
 
 # Create your views here.
 @login_required(login_url='/accounts/login/')
@@ -100,9 +101,9 @@ def graph_multi(request, start, end):
 	
 	
     for i in range(int(start), int(end) + 1):
-	chartdata["name"+str(i)] = json_data["id_"+str(i)]["name"]
-	chartdata["y"+str(i)] = map(float, json_data["id_"+str(i)]['data'])
-	chartdata["extra"+str(i)] = extra_serie
+	   chartdata["name"+str(i)] = json_data["id_"+str(i)]["name"]
+	   chartdata["y"+str(i)] = map(float, json_data["id_"+str(i)]['data'])
+	   chartdata["extra"+str(i)] = extra_serie
 		
 	
 	
@@ -133,20 +134,19 @@ def graph(request, data_id):
 
     json_data = JSONModel.objects.last().json_model
 
-    id = "id_" + str(data_id)
-
-    xdata = map(int, json_data['id_1']['data'])
-    ydata = map(float, json_data[id]['data'])
-
+    id = 'id_' + str(int(data_id)+1)
+    
+    xdata = map(int, json_data['id_2']['data'])
+    ydata = map(float, json_data[id]['data']) #C id
     tooltip_date = "%d %b %Y %H:%M:%S %p"
     extra_serie = {"tooltip": {"y_start": "The value is ", "y_end": " "},
                    "date_format": tooltip_date}
 
     chartdata = {
         'x': xdata,
-        'name1': json_data[id]['name'], 'y1': ydata, 'extra1': extra_serie,
+        'name1': json_data[id]['name'], 'y1': ydata, 'extra1': extra_serie,#C id
     }
-
+    
     charttype = "lineWithFocusChart"
     chartcontainer = 'linewithfocuschart_container'  # container name
     data = {
@@ -159,8 +159,19 @@ def graph(request, data_id):
             'jquery_on_ready': False,
         }
     }
+    ####From example
+    output_file = open('test-nvd3.html', 'w')
+    chart = lineWithFocusChart(name='lineWithFocusChart', x_is_date=True, x_axis_format="%d %b %Y")
+    chart.add_serie(name="Serie 1", y=ydata, x=xdata, extra=extra_serie)
+    chart.buildhtml()
+    output_file.write(chart.htmlcontent)
+    # close Html file
+    output_file.close()
     return render_to_response('linewithfocuschart.html', data)
 
+def test(request, data_id):
+    json_data = JSONModel.objects.last().json_model
+    return render_to_response('test.html', json_data)
 
 def get_latest_graph_id(request):
 	return HttpResponse(JSONModel.objects.last().id)
@@ -183,7 +194,7 @@ def get_latest_tram_data(request):
         form['is_valid'] = "The last command was valid."
 
     else:
-	form['is_valid'] = "The last command was not valid please enter a valid command."
+	   form['is_valid'] = "The last command was not valid please enter a valid command."
 	
 	
     
