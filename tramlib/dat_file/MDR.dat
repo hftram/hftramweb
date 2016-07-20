@@ -1,5 +1,5 @@
-A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z
-a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z
+Location,Date,record,Battery,Logger.Temp,NDVIDownRed,NDVIDownNIR,NDVIUpRed,NDVIUpNIR,NDVI,PRIDown532,PRIDown570,PRIUp532,PRIUp570,PRI,TempK,TempC,SWin,SWout,SWnet,LWin,LWout,LWnet,NetRad,Albedo,IR.BodyT.C,IR.TargetT.C
+cm,date,record,Volt,Degree,Logger.Temp,NDVIDownRed,NDVIDownNIR,NDVIUpRed,NDVIUpNIR,NDVI,PRIDown532,PRIDown570,PRIUp532,PRIUp570,PRI,Degree in K,Degree in C,SWin,SWout,SWnet,LWin,LWout,LWnet,NetRad,Albedo,IR.BodyT.C,IR.TargetT.C
 
 500,"2016-03-11 15:03:54",2624,12.08,16.19,2,0.012,0.013,0.6280001,0.399,0.261,0.0071,0.0072,0.6413,0.6189,-0.025,286.5307,13.38072,471.5375,55.48957,416.0479,253.1357,386.0591,-132.9234,283.1245,0.117678,13.51,13.62
 
